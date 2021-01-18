@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pusher : MonoBehaviour
+public class SpaceShip : MonoBehaviour
 {
-    const float thrustMoveForwardSpeed = 4;
-    const float thrustRotateSpeed = 3;
+    const float thrustMoveForwardSpeed = 10;
+    const float thrustRotateSpeed = 4;
     Rigidbody2D rigidSpaceShip;
 
     // Start is called before the first frame update

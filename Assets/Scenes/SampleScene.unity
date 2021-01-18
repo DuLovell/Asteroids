@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -217,7 +218,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &7758877439654668871
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c84cb6390d3cc4f43afed7ac84bd9bb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  asteroidPrefab: {fileID: 8371280613284652663, guid: 7ffa6b5a8452dd84da9d39b643dc6b0e,
+    type: 3}
+  asteroidSprites:
+  - {fileID: -1166419645563106178, guid: a15f4d55815c75343b1f5682018966cc, type: 3}
+  - {fileID: -3344260903791176458, guid: a15f4d55815c75343b1f5682018966cc, type: 3}
+  - {fileID: 8483072471844294400, guid: a15f4d55815c75343b1f5682018966cc, type: 3}
+--- !u!1001 &976782294
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
