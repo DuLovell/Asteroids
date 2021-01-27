@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
+    [SerializeField]
+    GameObject asteroidMiniPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +30,7 @@ public class Asteroid : MonoBehaviour
 
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.AddForce(direction * magnitude, ForceMode2D.Impulse);
+        rb.AddTorque(0.15f, ForceMode2D.Impulse);
 
         // Ignore other asteroid's colliders on the "Asteroids"  layer
         Physics2D.IgnoreLayerCollision(8, 8, true); // 8 is "Asteroids" layer
@@ -34,17 +38,15 @@ public class Asteroid : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "SpaceShip")
+           col.gameObject.GetComponent<SpaceShip>().Destroy();
+
+        if (col.gameObject.tag == "Bullet")
         {
-            Destroy(col.gameObject);
+            for (int i = 0; i < 2; i++)
+                Instantiate(asteroidMiniPrefab, transform.position, Quaternion.identity);
         }
     }
 }

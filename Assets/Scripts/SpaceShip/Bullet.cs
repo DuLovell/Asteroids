@@ -49,7 +49,11 @@ public class Bullet : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Asteroid")
+        {
             Destroy(col.gameObject);
+            FindObjectOfType<AudioManager>().Play("AsteroidDeath");
+        }
+            
 
         Destroy(gameObject);
     }

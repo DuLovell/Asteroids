@@ -74,8 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -1166419645563106178, guid: a15f4d55815c75343b1f5682018966cc,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 906091108fd8fdd4db43a8097d88f092, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -110,6 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1478853e3e94d5044bd0036f85a715ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  asteroidMiniPrefab: {fileID: 901088013357777050, guid: c988a7a990be73d42b0a21c1928cd3a1,
+    type: 3}
 --- !u!50 &-2418299116944647055
 Rigidbody2D:
   serializedVersion: 4
@@ -144,6 +145,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.00000017881393}
+  m_Offset: {x: 0.022160947, y: 0.028479576}
   serializedVersion: 2
-  m_Radius: 0.5824067
+  m_Radius: 0.7343834

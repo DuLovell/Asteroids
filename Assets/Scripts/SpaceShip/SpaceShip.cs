@@ -7,11 +7,14 @@ public class SpaceShip : MonoBehaviour
     [SerializeField]
     Bullet bulletPrefab;
 
+    [SerializeField]
+    Animator animator;
+
     bool isShootAxesInUse = false;
 
     const float thrustMoveForwardSpeed = 10;
     const float thrustRotateSpeed = 4;
-    Rigidbody2D rigidSpaceShip;
+    Rigidbody2D rb;
     Collider2D colliderSpaceShip;
 
     float shipTopHalf;
@@ -20,7 +23,7 @@ public class SpaceShip : MonoBehaviour
     void Start()
     {
         
-        rigidSpaceShip = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         colliderSpaceShip = GetComponent<Collider2D>();
 
         shipTopHalf = colliderSpaceShip.bounds.extents.y;
@@ -35,17 +38,24 @@ public class SpaceShip : MonoBehaviour
         // physically thrust rigidSpaceShip along the direction of looking
         if (Input.GetAxis("Thrust") != 0)
         {
-            rigidSpaceShip.AddForce(transform.up * thrustMoveForwardSpeed , ForceMode2D.Force); // transform.up - direction facing
+            rb.AddForce(transform.up * thrustMoveForwardSpeed , ForceMode2D.Force); // transform.up - direction facing
+            animator.SetBool("IsThrusting", true);
+        }
+        else
+        {
+            animator.SetBool("IsThrusting", false);
         }
 
         // physically rotate rigidSpaceShip around z coordinate
         float inputRotate = Input.GetAxis("Rotate"); 
         if (inputRotate != 0)
         {
+            // rotation with physics
             //rigidSpaceShip.AddTorque(-inputRotate * thrustRotateSpeed, ForceMode2D.Force); // -inputRotate because .AddTorque rotates obj in clockwise direction
             
             // rotation without physics
             transform.Rotate(new Vector3(0, 0, -inputRotate * thrustRotateSpeed));
+
         }
 
         if (Input.GetAxis("Shoot") != 0)
@@ -61,6 +71,12 @@ public class SpaceShip : MonoBehaviour
                 Bullet bullet = Instantiate(bulletPrefab, positionBullet, Quaternion.identity);
                 bullet.Direction = transform.up;
                 bullet.Rotation = transform.rotation;
+
+                // recoil after shooting a bullet
+                rb.AddForce(-transform.up / 2, ForceMode2D.Impulse);
+
+                FindObjectOfType<AudioManager>().Play("SpaceShip_shoot");
+
             }
         }
 
@@ -68,5 +84,12 @@ public class SpaceShip : MonoBehaviour
         {
             isShootAxesInUse = false;
         }
+    }
+
+    public void Destroy()
+    {
+        SessionTimer timer = GetComponent<SessionTimer>();
+        timer.Stop();
+        Destroy(gameObject);
     }
 }
